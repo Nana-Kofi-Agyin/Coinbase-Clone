@@ -1,0 +1,10 @@
+@tailwind components;
+@tailwind utilities;
+
+/* App-specific utilities: keep minimal — use Tailwind classes in JSX */
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+}
