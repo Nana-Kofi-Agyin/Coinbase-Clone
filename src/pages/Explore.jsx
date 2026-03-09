@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
+import { useCurrency } from '../context/CurrencyContext';
 import Footer from '../components/layout/Footer';
 import { CRYPTO_ASSETS, MARKET_STATS, TOP_MOVERS, NEW_ON_COINBASE } from '../data/cryptoData';
 import holdingCoin from '../assets/holdingCoin-3.svg';

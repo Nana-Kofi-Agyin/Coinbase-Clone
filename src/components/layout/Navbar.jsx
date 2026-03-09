@@ -31,23 +31,6 @@ const NAV_ITEMS = [
   {
     label: 'Cryptocurrencies',
     href: '/explore',
-    dropdown: {
-      columns: [
-        [
-          { label: 'Bitcoin', desc: 'The original cryptocurrency', bg: '#F7931A', letter: '₿', href: '/assets/bitcoin' },
-          { label: 'Ethereum', desc: 'Programmable smart contracts', bg: '#627EEA', letter: 'Ξ', href: '/assets/ethereum' },
-          { label: 'Solana', desc: 'High speed, low fees', bg: '#9945FF', letter: '◎', href: '/assets/solana' },
-          { label: 'Dogecoin', desc: "Internet's favorite crypto", bg: '#C3A634', letter: 'D', href: '/assets/dogecoin' },
-        ],
-        [
-          { label: 'Tether (USDT)', desc: 'USD-pegged stablecoin', bg: '#26A17B', letter: '₮', href: '/assets/tether' },
-          { label: 'USD Coin', desc: 'Earn 3.35% APY', bg: '#2775CA', letter: '$', href: '/assets/usd-coin' },
-          { label: 'BNB', desc: 'Binance ecosystem token', bg: '#F3BA2F', letter: 'B', href: '/assets/bnb' },
-          { label: 'XRP', desc: 'Fast global payments', bg: '#00AAE4', letter: 'X', href: '/assets/xrp' },
-        ],
-      ],
-      footer: { label: 'Explore all 18,500+ assets', href: '/explore' },
-    },
   },
   {
     label: 'Individuals',
@@ -168,23 +151,23 @@ function DropdownPanel({ dropdown, alignRight }) {
             {columns.map((col, ci) => (
               <div
                 key={ci}
-                className={`flex flex-col gap-0.5 min-w-[210px] ${ci > 0 ? 'border-l border-gray-100 pl-2' : ''} ${ci < columns.length - 1 ? 'pr-2' : ''}`}
+                className={`flex flex-col gap-1 min-w-[220px] ${ci > 0 ? 'border-l border-gray-100 pl-3' : ''} ${ci < columns.length - 1 ? 'pr-3' : ''}`}
               >
                 {col.map((item) => (
                   <Link
                     key={item.label}
                     to={item.href || '#'}
-                    className="flex items-start gap-3 px-2 py-2 rounded-xl hover:bg-gray-50 transition-colors"
+                    className="flex items-start gap-3 px-3 py-3 rounded-xl hover:bg-gray-50 transition-colors"
                   >
                     <div
-                      className="w-8 h-8 rounded-lg shrink-0 flex items-center justify-center text-white text-[10px] font-bold mt-0.5"
+                      className="w-8 h-8 rounded-lg shrink-0 flex items-center justify-center text-white text-[10px] font-bold mt-0.5 shadow-sm"
                       style={{ backgroundColor: item.bg || '#6b7280' }}
                     >
                       {item.letter}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-gray-900 leading-snug whitespace-nowrap">{item.label}</p>
-                      <p className="text-xs text-gray-500 mt-0.5 leading-snug max-w-[170px]">{item.desc}</p>
+                      <p className="text-sm font-semibold text-gray-900 leading-snug">{item.label}</p>
+                      <p className="text-xs text-gray-500 mt-0.5 leading-snug max-w-[190px]">{item.desc}</p>
                     </div>
                   </Link>
                 ))}
@@ -215,7 +198,7 @@ function DropdownPanel({ dropdown, alignRight }) {
         {footer && (
           <div className="border-t border-gray-100 px-5 py-3">
             <Link to={footer.href} className="text-sm text-[#1652f0] font-medium hover:underline">
-              {footer.label} →
+              {footer.label}
             </Link>
           </div>
         )}
@@ -349,16 +332,7 @@ export default function Navbar() {
                   }
                 >
                   {label}
-                  {dropdown && (
-                    <svg
-                      viewBox="0 0 16 16"
-                      className="w-3 h-3 ml-0.5 opacity-50 transition-transform duration-200 group-hover:rotate-180"
-                      fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <polyline points="4 6 8 10 12 6" />
-                    </svg>
-                  )}
+                  {/* chevron removed to match requested design */}
                 </NavLink>
                 {dropdown && (
                   <DropdownPanel dropdown={dropdown} alignRight={idx >= NAV_ITEMS.length - 2} />
@@ -395,17 +369,14 @@ export default function Navbar() {
       {/* ── Mobile menu ── */}
       {mobileOpen && (
         <nav className="lg:hidden border-t border-gray-100 bg-white px-4 py-3 flex flex-col gap-1" aria-label="Mobile navigation">
-          {NAV_ITEMS.map(({ label, href }) => (
+            {NAV_ITEMS.map(({ label, href }) => (
             <NavLink
               key={label}
               to={href}
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-between px-3 py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+              className="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
             >
               {label}
-              <svg viewBox="0 0 16 16" className="w-3 h-3 ml-1 opacity-40" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <polyline points="4 6 8 10 12 6" />
-              </svg>
             </NavLink>
           ))}
           <div className="border-t border-gray-100 mt-2 pt-2 flex gap-2">
